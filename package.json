@@ -1,0 +1,23 @@
+{
+  "name": "study-tdd",
+  "version": "1.0.0",
+  "description": "Study of TDD with JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chroda/study-tdd-js.git"
+  },
+  "keywords": [
+    "js",
+    "tdd"
+  ],
+  "author": "Christian Marcell <chroda@chroda.com.br> (chroda)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chroda/study-tdd-js/issues"
+  },
+  "homepage": "https://github.com/chroda/study-tdd-js#readme"
+}
