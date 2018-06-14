@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/chroda/study-tdd-js/issues"
   },
-  "homepage": "https://github.com/chroda/study-tdd-js#readme"
+  "homepage": "https://github.com/chroda/study-tdd-js#readme",
+  "devDependencies": {
+    "eslint": "^4.19.1"
+  }
 }
