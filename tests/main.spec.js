@@ -1,28 +1,58 @@
 import { expect } from 'chai';
+let calc = require('../src/main.js');
 
-describe('Main', () => {
-  let arr;
+describe('Calc', () => {
+  describe('Smoke tests', () => {
+    it('should exists the calc lib',() => {
+      expect(calc).to.exist;
+    });
 
-  beforeEach(()=>{
-    arr = [1,2,3];
+    it('should exists the method `sum`',() => {
+      expect(calc.sum).to.exist;
+      expect(calc.sum).to.be.an.function;
+    });
+
+    it('should exists the method `sub`',() => {
+      expect(calc.sub).to.exist;
+      expect(calc.sub).to.be.an.function;
+    });
+
+    it('should exists the method `mult`',() => {
+      expect(calc.mult).to.exist;
+      expect(calc.mult).to.be.an.function;
+    });
+
+    it('should exists the method `div`',() => {
+      expect(calc.div).to.exist;
+      expect(calc.div).to.be.an.function;
+    });
   });
 
-  it('should an array', () => {
-    expect(arr).to.be.an('array');
+  describe('Sum', () => {
+    it('should return 4 when `sum(2,2)`',() => {
+      expect(calc.sum(2,2)).to.be.equal(4);
+    });
   });
 
-  it('should have a size of 4 when push another value to the array', () => {
-    arr.push(4);
-    expect(arr).to.have.lengthOf(4);
+  describe('Sub', () => {
+    it('should return 4 when `sub(6,2)`',() => {
+      expect(calc.sub(6,2)).to.be.equal(4);
+    });
+
+    it('should return -4 when `sub(6,10)`',() => {
+      expect(calc.sub(6,2)).to.be.equal(4);
+    });
   });
 
-  it('should remove the value 3 when use pop in the array', () => {
-    arr.pop();
-    expect(arr).to.not.include(3);
+  describe('Mult', () => {
+    it('should return 4 when `mult(2,2)`',() => {
+      expect(calc.mult(2,2)).to.be.equal(4);
+    });
   });
 
-  it('should have a size of 2 when pop a value from the array', () => {
-    arr.pop();
-    expect(arr).to.have.lengthOf(2);
+  describe('Div', () => {
+    it('should return 4 when `div(4,2)`',() => {
+      expect(calc.div(4,2)).to.be.equal(2);
+    });
   });
 });
