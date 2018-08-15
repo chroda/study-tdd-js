@@ -1,3 +1,3 @@
-describe('Main', function(){
+describe('Main', function() {
 
 });
