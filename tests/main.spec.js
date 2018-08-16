@@ -1,58 +1,22 @@
 import { expect } from 'chai';
-let calc = require('../src/main.js');
+import FizzBuzz from '../src/main';
 
-describe('Calc', () => {
-  describe('Smoke tests', () => {
-    it('should exists the calc lib', () => {
-      expect(calc).to.exist;
-    });
-
-    it('should exists the method `sum`', () => {
-      expect(calc.sum).to.exist;
-      expect(calc.sum).to.be.an.function;
-    });
-
-    it('should exists the method `sub`', () => {
-      expect(calc.sub).to.exist;
-      expect(calc.sub).to.be.an.function;
-    });
-
-    it('should exists the method `mult`', () => {
-      expect(calc.mult).to.exist;
-      expect(calc.mult).to.be.an.function;
-    });
-
-    it('should exists the method `div`', () => {
-      expect(calc.div).to.exist;
-      expect(calc.div).to.be.an.function;
-    });
+describe('Main', () => {
+  it('should return `Fizz` when multiple of 3', () => {
+    expect(FizzBuzz(3)).to.be.equal('Fizz');
+    expect(FizzBuzz(6)).to.be.equal('Fizz');
   });
 
-  describe('Sum', () => {
-    it('should return 4 when `sum(2,2)`', () => {
-      expect(calc.sum(2,2)).to.be.equal(4);
-    });
+  it('should return `Buzz` when multiple of 5', () => {
+    expect(FizzBuzz(5)).to.be.equal('Buzz');
+    expect(FizzBuzz(10)).to.be.equal('Buzz');
   });
 
-  describe('Sub', () => {
-    it('should return 4 when `sub(6,2)`', () => {
-      expect(calc.sub(6,2)).to.be.equal(4);
-    });
-
-    it('should return -4 when `sub(6,10)`', () => {
-      expect(calc.sub(6,2)).to.be.equal(4);
-    });
+  it('should return `FizzBuzz` when multiple of 3 and 5', () => {
+    expect(FizzBuzz(15)).to.be.equal('FizzBuzz');
   });
 
-  describe('Mult', () => {
-    it('should return 4 when `mult(2,2)`', () => {
-      expect(calc.mult(2,2)).to.be.equal(4);
-    });
-  });
-
-  describe('Div', () => {
-    it('should return 4 when `div(4,2)`', () => {
-      expect(calc.div(4,2)).to.be.equal(2);
-    });
+  it('should return the number when nom-multiple', () => {
+    expect(FizzBuzz(7)).to.be.equal(7);
   });
 });

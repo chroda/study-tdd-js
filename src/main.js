@@ -1,6 +1,6 @@
-module.exports = {
-  sum: (n1, n2) => n1 + n2,
-  sub: (n1, n2) => n1 - n2,
-  mult: (n1, n2) => n1 * n2,
-  div: (n1, n2) => n1 / n2,
-};
+export default (num) => {
+  if(num % 3 === 0 && num % 5 === 0) return 'FizzBuzz';
+  if(num % 3 === 0) return 'Fizz';
+  if(num % 5 === 0) return 'Buzz';
+  return num;
+}
