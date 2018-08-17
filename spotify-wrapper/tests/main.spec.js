@@ -5,8 +5,10 @@ import sinonStubPromise from 'sinon-stub-promise';
 chai.use(sinonChai);
 sinonStubPromise(sinon);
 
+global.fetch = require('node-fetch');
 
 import { search, searchArtists, searchAlbums, searchTracks, searchPlaylists } from '../src/main';
+import { beforeEach } from 'mocha';
 
 describe('Spotify Wrapper', () => {
   describe('smoke tests', () => {
@@ -28,9 +30,36 @@ describe('Spotify Wrapper', () => {
   });
 
   describe('generic search', () => {
+    let fetchedStub;
+    let promise;
+    beforeEach(() => {
+      fetchedStub = sinon.stub(global, 'fetch');
+      fetchedStub.returnsPromise();
+      // promise = fetchedStub.returnsPromise();
+    });
+    afterEach(() => {
+      fetchedStub.restore();
+    });
     it('should call fetch function', () => {
       const artists = search();
+      expect(fetchedStub).to.have.been.calledOnce;
     });
-
+    it('should receive the correct url to fetch', () => {
+      context('passing one type', () => {
+        const artists = search('Queen','artist');
+        const albums = search('Queen','album');
+        expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Queen&type=artist');
+        expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Queen&type=album');
+      });
+      context('passing more than one type', () => {
+        const artists = search('Queen',['artist','album']);
+        expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Queen&type=artist,album');
+      });
+    });
+    it('should return the JSON Data from the Promise', () => {
+      // promise.resolves({ body: 'json' });
+    });
   });
+
+
 });
