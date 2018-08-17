@@ -34,7 +34,7 @@ describe('Spotify Wrapper', () => {
     let promise;
     beforeEach(() => {
       fetchedStub = sinon.stub(global, 'fetch');
-      fetchedStub.returnsPromise();
+      sinon.stub().returnsPromise();
       // promise = fetchedStub.returnsPromise();
     });
     afterEach(() => {
