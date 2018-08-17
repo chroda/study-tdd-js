@@ -27,35 +27,37 @@ describe('Spotify Wrapper', () => {
     });
   });
 
-  describe('generic search', () => {
-    let fetchedStub;
+  describe('search', () => {
+    let stubedFetch;
     let promise;
     beforeEach(() => {
-      fetchedStub = sinon.stub(global, 'fetch');
-      sinon.stub().returnsPromise();
-      // promise = fetchedStub.returnsPromise();
+      stubedFetch = sinon.stub(global, 'fetch');
+      promise = stubedFetch.resolves({ json: () => ({ body: 'json' }) });
     });
     afterEach(() => {
-      fetchedStub.restore();
+      stubedFetch.restore();
     });
     it('should call fetch function', () => {
       const artists = search();
-      expect(fetchedStub).to.have.been.calledOnce;
+      expect(stubedFetch).to.have.been.calledOnce;
     });
     it('should receive the correct url to fetch', () => {
       context('passing one type', () => {
         const artists = search('Queen','artist');
         const albums = search('Queen','album');
-        expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Queen&type=artist');
-        expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Queen&type=album');
+        expect(stubedFetch).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Queen&type=artist');
+        expect(stubedFetch).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Queen&type=album');
       });
       context('passing more than one type', () => {
         const artists = search('Queen',['artist','album']);
-        expect(fetchedStub).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Queen&type=artist,album');
+        expect(stubedFetch).to.have.been.calledWith('https://api.spotify.com/v1/search?q=Queen&type=artist,album');
       });
     });
     it('should return the JSON Data from the Promise', () => {
-      // promise.resolves({ body: 'json' });
+      const artists = search('Queen','artist');
+      artists.then((data) => {
+        expect(data).to.be.eql({ body: 'json'});
+      });
     });
   });
 
